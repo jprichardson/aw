@@ -1,0 +1,30 @@
+{
+  "name": "aw",
+  "version": "0.0.0",
+  "description": "An async experiment.",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel --stage 1 ./aw.js -o index.js",
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jprichardson/aw.git"
+  },
+  "keywords": [
+    "async"
+  ],
+  "author": "JP Richardson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jprichardson/aw/issues"
+  },
+  "homepage": "https://github.com/jprichardson/aw#readme",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "once": "^1.3.2"
+  },
+  "devDependencies": {
+    "babel": "^5.6"
+  }
+}
