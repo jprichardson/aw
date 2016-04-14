@@ -2,9 +2,9 @@
   "name": "aw",
   "version": "0.0.1",
   "description": "An async experiment.",
-  "main": "index.js",
+  "main": "./lib/aw.js",
   "scripts": {
-    "build": "babel --stage 1 ./aw.js -o index.js",
+    "build": "babel --stage 1 ./src/aw.js -o ./lib/aw.js",
     "test": "standard"
   },
   "repository": {
