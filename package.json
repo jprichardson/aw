@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "An async experiment.",
   "main": "./lib/aw.js",
+  "jsnext:main": "./src/aw.js",
   "scripts": {
     "build": "babel ./src/aw.js -o ./lib/aw.js",
     "test": "standard"
