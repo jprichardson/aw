@@ -1,6 +1,6 @@
 {
   "name": "aw",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An async experiment.",
   "main": "./lib/aw.js",
   "jsnext:main": "./src/aw.js",
