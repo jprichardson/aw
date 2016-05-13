@@ -32,3 +32,25 @@ test('> when sync it should return result', async function (t) {
 
   t.end()
 })
+
+test('> when using this', async function (t) {
+  t.plan(3)
+
+  async function fetchMessage () {
+    return 'hello ' + this.name
+  }
+
+  let o = { name: 'jp' }
+  o.fetchMessage = fetchMessage
+
+  var msg = await o.fetchMessage()
+  t.is(msg, 'hello jp', 'original result is set')
+
+  o.fetchMessageAwait = aw(o.fetchMessage, { context: o })
+  const [err, res] = await o.fetchMessageAwait()
+
+  t.is(res, 'hello jp', 'result is set')
+  t.notOk(err, 'error is falsy')
+
+  t.end()
+})
