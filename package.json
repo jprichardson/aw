@@ -23,10 +23,6 @@
     "url": "https://github.com/jprichardson/aw/issues"
   },
   "homepage": "https://github.com/jprichardson/aw#readme",
-  "dependencies": {
-    "bluebird": "^2.9.34",
-    "once": "^1.3.2"
-  },
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.4",
