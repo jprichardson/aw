@@ -41,5 +41,8 @@
   "standard": {
     "ignore": "lib/",
     "parser": "babel-eslint"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
   }
 }
