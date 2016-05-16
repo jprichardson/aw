@@ -54,3 +54,20 @@ test('> when using this', async function (t) {
 
   t.end()
 })
+
+test('> proper context in object', async function (t) {
+  t.plan(2)
+
+  var o = {
+    get name () { return 'jp' },
+    fetchName: aw(async function () {
+      return this.name
+    })
+  }
+
+  let [err, name] = await o.fetchName()
+  t.ifError(err, 'no error')
+  t.is(name, 'jp', 'name is properly set => this is correct')
+
+  t.end()
+})

@@ -1,7 +1,8 @@
 function aw (fn, options = {}) {
   return async function (...args) {
+    const opts = { ...options, context: options.context || this }
     try {
-      var result = await wrap(fn, args, options)
+      var result = await wrap(fn, args, opts)
       if (Array.isArray(result)) return [null, ...result]
       else return [null, result]
     } catch (err) {
