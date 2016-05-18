@@ -1,3 +1,7 @@
+0.0.3 / 2016-05-18
+------------------
+- bug fix `this` and proper context 
+
 0.0.2 / 2016-05-13
 ------------------
 - compile w/ Babel 6.x
