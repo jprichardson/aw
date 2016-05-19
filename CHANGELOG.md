@@ -1,6 +1,10 @@
+0.0.4 / 2016-05-19
+------------------
+- bug fix, proper array spreading (only when wrapping a callback)
+
 0.0.3 / 2016-05-18
 ------------------
-- bug fix `this` and proper context 
+- bug fix `this` and proper context
 
 0.0.2 / 2016-05-13
 ------------------
