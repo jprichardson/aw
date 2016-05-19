@@ -56,3 +56,23 @@ test('> when multiple results, it should return all', async function (t) {
 
   t.end()
 })
+
+test('> when array is the return', async function (t) {
+  t.plan(3)
+
+  function fetchMessage (name, callback) {
+    setImmediate(function () {
+      callback(null, [name + ', the secret is...', 'open sesame'])
+    })
+  }
+
+  const fetchMessageAwait = aw(fetchMessage)
+  const [err, vals] = await fetchMessageAwait('jp')
+  const [msg, password] = vals
+
+  t.is(msg, 'jp, the secret is...', 'first callback result')
+  t.is(password, 'open sesame', 'second callback result')
+  t.notOk(err, 'error is falsy')
+
+  t.end()
+})
