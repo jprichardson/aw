@@ -1,4 +1,5 @@
 import test from 'tape-promise/tape'
+import delay from 'delay'
 import aw from '../src/aw'
 
 test('> when error is thrown it should return result', async function (t) {
@@ -68,6 +69,23 @@ test('> proper context in object', async function (t) {
   let [err, name] = await o.fetchName()
   t.ifError(err, 'no error')
   t.is(name, 'jp', 'name is properly set => this is correct')
+
+  t.end()
+})
+
+test('> when returning an array', async function (t) {
+  t.plan(2)
+
+  async function fetchMessage (name) {
+    await delay(10)
+    return ['hello ' + name]
+  }
+
+  const fetchMessageAwait = aw(fetchMessage)
+  const [err, res] = await fetchMessageAwait('jp')
+
+  t.deepEqual(res, ['hello jp'], 'result is set an an array')
+  t.ifError(err, 'no error')
 
   t.end()
 })

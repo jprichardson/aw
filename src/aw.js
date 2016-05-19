@@ -2,9 +2,9 @@ function aw (fn, options = {}) {
   return async function (...args) {
     const opts = { ...options, context: options.context || this }
     try {
-      var result = await wrap(fn, args, opts)
-      if (Array.isArray(result)) return [null, ...result]
-      else return [null, result]
+      var { type, val } = await wrap(fn, args, opts)
+      if (type === 'cb' && Array.isArray(val)) return [null, ...val]
+      else return [null, val]
     } catch (err) {
       return [err]
     }
@@ -13,13 +13,15 @@ function aw (fn, options = {}) {
 
 function wrap (fn, args, options) {
   return new Promise(function (resolve, reject) {
-    args.push(function injectedAWCallbackArg (err, ...cbArgs) { err == null ? resolve(cbArgs) : reject(err) })
+    args.push(function injectedAWCallbackArg (err, ...cbArgs) { err == null ? resolve({ type: 'cb', val: cbArgs }) : reject(err) })
 
     let p = fn.apply(options.context, args)
     if (p instanceof Promise) {
-      p.then(resolve).catch(reject)
+      p.then(function (val) {
+        resolve({ type: 'p', val })
+      }).catch(reject)
     } else if (p) {
-      resolve(p)
+      resolve({ type: 's', val: p })
     }
   })
 }

@@ -25,3 +25,20 @@ test('aw: > when return promise it should return result', async function (t) {
 
   t.end()
 })
+
+test('> when promise returns an array', async function (t) {
+  function fetchMessage (name) {
+    return new Promise(function (resolve, reject) {
+      if (typeof name === 'string') return resolve(['hello ' + name])
+      else return reject(new Error('Must pass name.'))
+    })
+  }
+
+  const fetchMessageAwait = aw(fetchMessage)
+  const [err, res] = await fetchMessageAwait('jp')
+
+  t.ifError(err, 'no error')
+  t.deepEqual(res, ['hello jp'], 'result exists as an array')
+
+  t.end()
+})
