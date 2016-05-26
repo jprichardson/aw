@@ -1,28 +1,11 @@
 {
   "name": "aw",
-  "version": "0.0.4",
   "description": "An async experiment.",
-  "main": "./lib/aw.js",
-  "jsnext:main": "./src/aw.js",
-  "scripts": {
-    "build": "babel ./src/aw.js -o ./lib/aw.js",
-    "lint": "standard",
-    "test": "npm run build && npm run lint && npm run unit",
-    "unit": "tape -r babel-register tests/*.test.js | tap-spec"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jprichardson/aw.git"
-  },
-  "keywords": [
-    "async"
-  ],
+  "version": "0.0.4",
   "author": "JP Richardson",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jprichardson/aw/issues"
   },
-  "homepage": "https://github.com/jprichardson/aw#readme",
   "devDependencies": {
     "babel-cli": "^6.8.0",
     "babel-eslint": "^6.0.4",
@@ -36,11 +19,28 @@
     "tape": "^4.5.1",
     "tape-promise": "^1.1.0"
   },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "homepage": "https://github.com/jprichardson/aw#readme",
+  "jsnext:main": "./src/aw.js",
+  "keywords": [
+    "async"
+  ],
+  "license": "MIT",
+  "main": "./lib/aw.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jprichardson/aw.git"
+  },
+  "scripts": {
+    "build": "babel ./src/aw.js -o ./lib/aw.js",
+    "lint": "standard",
+    "test": "npm run build && npm run lint && npm run unit",
+    "unit": "tape -r babel-register tests/*.test.js | tap-spec"
+  },
   "standard": {
     "ignore": "lib/",
     "parser": "babel-eslint"
-  },
-  "engines": {
-    "node": ">= 4.0.0"
   }
 }
