@@ -1,3 +1,25 @@
+0.1.0 / 2016-06-22
+------------------
+- parameter ordering doesn't matter... i.e.
+
+```js
+aw(fn, opts)
+```
+
+is the same as
+
+```js
+aw(opts, fn)
+```
+
+- now MOOAAAR functional
+
+```js
+aw(opts, fn) === aw(opts)(fn)
+```
+
+
+
 0.0.4 / 2016-05-19
 ------------------
 - bug fix, proper array spreading (only when wrapping a callback)

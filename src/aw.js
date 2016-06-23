@@ -1,4 +1,20 @@
-function aw (fn, options = {}) {
+const isFunc = (fn) => typeof fn === 'function'
+const isObj = (obj) => obj != null && typeof obj === 'object'
+
+function aw (...args) {
+  if (args.length === 2) {
+    if (isFunc(args[0]) && isObj(args[1])) return _aw(args[0], args[1])
+    if (isObj(args[0]) && isFunc(args[1])) return _aw(args[1], args[0])
+    throw new Error('aw uknown types.')
+  } else if (args.length === 1) {
+    if (isFunc(args[0])) return _aw(args[0])
+    if (isObj(args[0])) return (fn) => _aw(fn, args[0])
+    throw new Error('aw unknown type.')
+  }
+  throw new Error('aw incorrect number of parameters')
+}
+
+function _aw (fn, options = {}) {
   return async function (...args) {
     const opts = { ...options, context: options.context || this }
     try {
