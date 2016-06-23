@@ -1,7 +1,7 @@
 {
   "name": "aw",
   "description": "An async experiment.",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "author": "JP Richardson",
   "bugs": {
     "url": "https://github.com/jprichardson/aw/issues"
