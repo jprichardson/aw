@@ -119,3 +119,15 @@ test('> when default parameter', async function (t) {
 
   t.end()
 })
+
+test('> when catch is false', async function (t) {
+  async function fetchMessage (name) {
+    return 'hello ' + name
+  }
+
+  const fetchMessageAwait = aw(fetchMessage, { catch: false })
+  let res = await fetchMessageAwait('jp')
+  t.is(res, 'hello jp', 'result is set')
+
+  t.end()
+})

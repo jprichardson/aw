@@ -76,3 +76,17 @@ test('> when array is the return', async function (t) {
 
   t.end()
 })
+
+test('> when catch is false', async function (t) {
+  function fetchMessage (name, callback) {
+    setImmediate(function () {
+      callback(null, name + ', the secret is...', 'open sesame')
+    })
+  }
+
+  const fetchMessageAwait = aw(fetchMessage, { catch: false })
+  let res = await fetchMessageAwait('jp')
+  t.deepEqual(res, ['jp, the secret is...', 'open sesame'], 'proper result')
+
+  t.end()
+})

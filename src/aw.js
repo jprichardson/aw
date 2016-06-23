@@ -16,13 +16,19 @@ function aw (...args) {
 
 function _aw (fn, options = {}) {
   return async function (...args) {
-    const opts = { context: this, injectCallback: true, ...options }
-    try {
-      var { type, val } = await wrap(fn, args, opts)
-      if (type === 'cb' && Array.isArray(val)) return [null, ...val]
-      else return [null, val]
-    } catch (err) {
-      return [err]
+    const opts = { context: this, injectCallback: true, catch: true, ...options }
+    if (opts.catch) {
+      try {
+        let { type, val } = await wrap(fn, args, opts)
+        if (type === 'cb' && Array.isArray(val)) return [null, ...val]
+        else return [null, val]
+      } catch (err) {
+        return [err]
+      }
+    } else {
+      let { type, val } = await wrap(fn, args, opts)
+      if (type === 'cb' && Array.isArray(val)) return [...val]
+      else return val
     }
   }
 }
