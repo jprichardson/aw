@@ -18,6 +18,8 @@ aw(opts, fn)
 aw(opts, fn) === aw(opts)(fn)
 ```
 
+- add `injectCallback` to `options`.
+
 
 
 0.0.4 / 2016-05-19

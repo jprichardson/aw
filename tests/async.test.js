@@ -100,3 +100,22 @@ test('> when returning an array', async function (t) {
 
   t.end()
 })
+
+test('> when default parameter', async function (t) {
+  async function fetchMessage (name = 'jp') {
+    return 'hello ' + name
+  }
+
+  const fetchMessageAwait = aw(fetchMessage)
+  // intentionally no param, trigger default
+  let [err, res] = await fetchMessageAwait()
+  t.ifError(err, 'no error')
+  t.true(res.startsWith('hello function injectedAWCallbackArg'), 'aw is passing injected callback')
+
+  const fetchMessageAwait2 = aw(fetchMessage, { injectCallback: false })
+  ;[err, res] = await fetchMessageAwait2()
+  t.ifError(err, 'no error')
+  t.true(res.startsWith('hello jp'), 'aw is passing injected callback')
+
+  t.end()
+})
