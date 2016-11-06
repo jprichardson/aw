@@ -1,3 +1,5 @@
+const isPromise = require('is-promise')
+
 const isFunc = (fn) => typeof fn === 'function'
 const isObj = (obj) => obj != null && typeof obj === 'object'
 
@@ -40,7 +42,7 @@ function wrap (fn, args, options) {
     }
 
     let p = fn.apply(options.context, args)
-    if (p instanceof Promise) {
+    if (isPromise(p)) {
       p.then(function (val) {
         resolve({ type: 'p', val })
       }).catch(reject)
