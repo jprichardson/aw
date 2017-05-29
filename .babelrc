@@ -1,9 +1,17 @@
 {
   "presets": [
-    "es2015-node4",
-    "stage-2"
+    ["env", {
+      "targets": {
+        "node": "4"
+      }
+    }]
   ],
   "plugins": [
-    "transform-decorators-legacy"
+    "transform-runtime",
+    "syntax-async-generators",
+    "transform-regenerator"
+  ],
+  "ignore": [
+    "lib/*.js"
   ]
 }
